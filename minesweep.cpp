@@ -17,11 +17,16 @@ int main(){
 		
 cout<< "Enter two numbers, separated by a space, to set grid size.\n";
 cin>> row>>col;
+while ((row>50)||(col>50)){
+	cout<<"Numbers must be 50 or less. Enter new numbers.\n";
+	cin>> row >> col;
+	}
 
 int *a;
 int *b;
 a= new int[row];
 b= new int[col];
+
 printmap();
 
 }
@@ -29,8 +34,15 @@ printmap();
 }
 
 void printmap(){
-	cout << endl << "       0 1 2 3 4 5 6 7 8 9" << endl;
-	cout        <<  "       ____________________" << endl;
+	cout<<endl<<"       ";
+	for (int w=0; w<row; w++){
+		if (w<10){cout <<"  "<< w;}
+		else if (w<=50){cout<<" "<<w;}
+	}
+	cout <<endl<<  "       ";
+	for (int v=0;v<row;v++){
+		cout <<"___";
+	}cout<<endl;
 	for(int x=0; x<row; x++){
 		for( int y=0; y<col; y++){
 			numbers[x][y] = '~';
@@ -38,9 +50,10 @@ void printmap(){
 	}
 
 	for(int x=0; x<row; x++){
-		cout << "    " << x << " | ";
+		if(x<10){cout << "    " << x << " | ";}
+		else if (x>=10){cout <<"   " << x << " | ";}
 		for( int y=0; y<col; y++){
-			cout << numbers[x][y] << " ";
+			cout <<" "<< numbers[x][y] << " ";
 		}
 		cout << endl;
 	}
