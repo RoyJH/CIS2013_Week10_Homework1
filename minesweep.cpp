@@ -21,7 +21,6 @@ char play;
 int main(){
 while(playing == true){
 	srand(time(NULL));
-		
 	cout<< "Enter two numbers, separated by a space, to set grid size. (49 Max)\n";
 	cin>> row>>col;
 	while ((row>50)||(col>50)){
@@ -37,11 +36,11 @@ while(playing == true){
 
 	printmap();
 
-for (int i=0; i<=bombs;i++){
-	int x= rand() % row + 1;
-	int y= rand() % col +1;
-	plots[x][y] = 'X';
-}
+	for (int i=0; i<=bombs;i++){
+		int x= rand() % row +1;
+		int y= rand() % col +1;
+		plots[x][y] = 'X';
+	}
 	while(running==true){
 		cout << "Enter plot to check.\n";
 		cin >> first>>second;
@@ -56,15 +55,20 @@ for (int i=0; i<=bombs;i++){
 		else if (plots [first][second]=='~'){
 			numbers[first][second]= ' ';
 			plots[first][second]= ' ';
-		updatemap();
+			updatemap();
 		}
 	}
+	
 	cout<<"Would you like to play again? Y/N\n";
 	cin>> play;
-	if ((play=='Y')||(play=='y')){playing=true;}
+	if ((play=='Y')||(play=='y')){
+		playing=true;
+		running=1;
+	}
 	else if ((play=='N')||(play=='n')){playing=false;}
-	else cout<< "Invalid option.  Please enter Y/y or N/n.\n";
-	cin>>play;
+	else {cout<< "Invalid option.  Please enter Y/y or N/n.\n";
+	cin>>play;}
+	
 	}
 	return 0;
 }
