@@ -9,19 +9,20 @@ int row;
 int col;
 int bombs;
 int running = 1;
+int playing =1;
 char plots[49][49];
 char numbers[49][49];
 void printmap();
 void updatemap();
 void revealmap();
-
+char play;
 
 	
 int main(){
-	
+while(playing == true){
 	srand(time(NULL));
 		
-	cout<< "Enter two numbers, separated by a space, to set grid size.\n";
+	cout<< "Enter two numbers, separated by a space, to set grid size. (49 Max)\n";
 	cin>> row>>col;
 	while ((row>50)||(col>50)){
 		cout<<"Numbers must be 50 or less. Enter new numbers.\n";
@@ -58,6 +59,13 @@ for (int i=0; i<=bombs;i++){
 		updatemap();
 		}
 	}
+	cout<<"Would you like to play again? Y/N\n";
+	cin>> play;
+	if ((play=='Y')||(play=='y')){playing=true;}
+	else if ((play=='N')||(play=='n')){playing=false;}
+	else cout<< "Invalid option.  Please enter Y/y or N/n.\n";
+	cin>>play;
+	}
 	return 0;
 }
 
@@ -93,6 +101,7 @@ void printmap(){
 }
 
 void updatemap(){
+//Update board with entered coordinates.
 	cout<<endl<<"       ";
 	for (int w=0; w<row; w++){
 		if (w<10){cout <<"  "<< w;}
@@ -102,11 +111,6 @@ void updatemap(){
 	for (int v=0;v<row;v++){
 		cout <<"___";
 	}cout<<endl;
-	/* for(int x=0; x<row; x++){
-		for( int y=0; y<col; y++){
-			numbers[x][y] = '~';
-		}
-	} */
 
 	for(int x=0; x<row; x++){
 		if(x<10){cout << "    " << x << " | ";}
@@ -116,13 +120,11 @@ void updatemap(){
 		}
 		cout << endl;
 	}
-/* 		for(int x=0; x<row; x++){
-		for( int y=0; y<col; y++){
-		plots[x][y] = '~';
-		} */
-		}
+
+}
 
 void revealmap(){
+//Reveals that game board after player has loss.
 	cout<<endl<<"       ";
 	for (int w=0; w<row; w++){
 		if (w<10){cout <<"  "<< w;}
@@ -132,11 +134,6 @@ void revealmap(){
 	for (int v=0;v<row;v++){
 		cout <<"___";
 	}cout<<endl;
-	/* for(int x=0; x<row; x++){
-		for( int y=0; y<col; y++){
-			numbers[x][y] = '~';
-		}
-	} */
 
 	for(int x=0; x<row; x++){
 		if(x<10){cout << "    " << x << " | ";}
@@ -146,10 +143,7 @@ void revealmap(){
 		}
 		cout << endl;
 	}
-/* 		for(int x=0; x<row; x++){
-		for( int y=0; y<col; y++){
-		plots[x][y] = '~';
-		} */
-	}
+
+}
 
 
